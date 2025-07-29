@@ -23,7 +23,8 @@ def predict_single_batch(img1, img2, concat_model_path, threshold=0.6):
     
     with tf.distribute.MirroredStrategy(devices=["/gpu:0", "/gpu:1"]).scope():
         concat_pred = concat_model.predict([img1_processed, img2_processed], batch_size=1)[0][0]
-        
+    concat_pred = concat_pred.flatten()
+
     pred_value = float(concat_pred)
     is_same = pred_value >= threshold
     
@@ -58,8 +59,8 @@ def main():
    
    # Make prediction
    with tf.distribute.MirroredStrategy(devices=["/gpu:0", "/gpu:1"]).scope():
-       concat_pred = concat_model.predict([img1_processed, img2_processed], batch_size=1)[0][0]
-   
+        concat_pred = concat_model.predict([img1_processed, img2_processed], batch_size=1)[0][0]
+   predictions = predictions.flatten()
    # Apply transformation if siamese model
    
    
