@@ -17,7 +17,7 @@ class FaceAuthSystem:
         self.root.configure(bg='#f0f0f0')
         
         # Create users directory if it doesn't exist
-        self.users_dir = "users"
+        self.users_dir = "../users"
         if not os.path.exists(self.users_dir):
             os.makedirs(self.users_dir)
         
@@ -398,7 +398,7 @@ class FaceAuthSystem:
                 return
             
             # Verification check (verify_pred > 0.5 indicates same person)
-            if verify_pred[0][0] > 0.67:
+            if verify_pred[0][0] > 0.65:
                 self.login_status_label.configure(
                     text=f"Welcome {name}! Login successful! (Verification: {verify_confidence:.2f}%, Anti-spoof: {spoof_confidence:.2f}%)", 
                     fg='green'
