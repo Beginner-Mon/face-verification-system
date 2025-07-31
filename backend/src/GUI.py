@@ -33,7 +33,7 @@ class FaceAuthSystem:
         
         # Load anti-spoofing model
         try:
-            self.model = load_model('../model/test_anti_spoofing_model.keras')
+            self.model = load_model('../model/anti_spoofing_model_upgraded1.keras')
             print("Anti-spoofing model loaded successfully")
         except Exception as e:
             print(f"Error loading model: {str(e)}")
